@@ -2,7 +2,7 @@ package main
 
 import (
 	"bytes"
-	"errors"
+	"fmt"
 	"strconv"
 )
 
@@ -105,7 +105,7 @@ func String(board Board) string {
 func FillBoard(board Board, rows string) (err error) {
 
 	if len(rows) != 81 {
-		return errors.New("Expecting exactly 81 chars found ${rows.length}")
+		return fmt.Errorf("Expecting exactly 81 chars found %d", len(rows))
 	}
 
 	var x, y, val int

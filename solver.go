@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func findFirstEmptyCell(board Board) (x, y int, found bool) {
-	for x = 0; x < 9; x++ {
-		for y = 0; y < 9; y++ {
+	for y = 0; y < 9; y++ {
+		for x = 0; x < 9; x++ {
 			if board.getCell(x, y) == 0 {
 				found = true
 				return
@@ -97,20 +97,20 @@ func anyFail(board Board) string {
 func Solve(board Board) {
 	fail := anyFail(board)
 	if fail != "" {
-		// fmt.Println(fail);
+		// fmt.Println(fail)
 		failCounter++
 		return
 	}
 	x, y, foundEmpty := findFirstEmptyCell(board)
 	if foundEmpty {
-		// fmt.Println(`Found an empty cell at ${x},${y}`);
-		for val := 1; val <= 10; val++ {
+		// fmt.Printf("Found an empty cell at %d, %d\n", x, y)
+		for val := 1; val < 10; val++ {
 			newBoard := DiffBoard{parent: board, x: x, y: y, val: val}
 			Solve(&newBoard)
 		}
 	} else {
 		winCounter++
 		fmt.Println("Try", failCounter, "Win", winCounter)
-		fmt.Println(board)
+		fmt.Println(String(board))
 	}
 }

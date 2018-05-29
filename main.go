@@ -23,5 +23,5 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Println(String(&b))
-	// b.solve()
+	Solve(&b)
 }
